@@ -9,4 +9,21 @@ public class PaymentDTO {
   private Date paymentDate;
 
   // getters and setters
+
+  public int getPaymentAmount() {
+    return paymentAmount;
+  }
+
+  public void setPaymentAmount(int paymentAmount) {
+    this.paymentAmount = paymentAmount;
+  }
+
+  public Date getPaymentDate() {
+    return paymentDate;
+  }
+
+  public void setPaymentDate(Date paymentDate) {
+    this.paymentDate = paymentDate;
+  }
+
 }

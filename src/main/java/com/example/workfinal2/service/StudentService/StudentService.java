@@ -4,6 +4,7 @@ import com.example.workfinal2.model.group.Group;
 import com.example.workfinal2.model.student.Student;
 import com.example.workfinal2.repository.GroupRepository;
 import com.example.workfinal2.repository.StudentRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,10 +19,11 @@ public class StudentService {
   private final GroupRepository groupRepository;
 
   @Autowired
-  public StudentService(StudentRepository studentRepository, GroupRepository groupRepository) {
+  public StudentService(final StudentRepository studentRepository, final GroupRepository groupRepository) {
     this.studentRepository = studentRepository;
     this.groupRepository = groupRepository;
   }
+
 
   @Transactional
   public Student createStudent(Student student) {
@@ -33,10 +35,10 @@ public class StudentService {
   @Transactional
   public Student addStudentToGroup(Long studentId, Long groupId) {
     Student student = studentRepository.findById(studentId)
-            .orElseThrow(() -> new RuntimeException("Студент з id " + studentId + " не знайдений"));
+            .orElseThrow(() -> new EntityNotFoundException("Студент з id " + studentId + " не знайдений"));
 
     Group group = groupRepository.findById(groupId)
-            .orElseThrow(() -> new RuntimeException("Група з id " + groupId + " не знайдена"));
+            .orElseThrow(() -> new EntityNotFoundException("Група з id " + groupId + " не знайдена"));
 
     student.setGroup(group);
     studentRepository.save(student);

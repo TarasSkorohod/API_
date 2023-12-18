@@ -35,6 +35,10 @@ public class Session {
     this.teacher = teacher;
   }
 
+  public Session() {
+
+  }
+
   public Long getId() {
     return id;
   }

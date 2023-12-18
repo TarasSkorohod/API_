@@ -1,6 +1,7 @@
 package com.example.workfinal2.service.TeacherService;
 
 import com.example.workfinal2.DTO.TeacherIncomeDTO;
+import com.example.workfinal2.model.group.Group;
 import com.example.workfinal2.model.teacher.Teacher;
 import com.example.workfinal2.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
