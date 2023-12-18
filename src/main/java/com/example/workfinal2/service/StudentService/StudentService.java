@@ -6,11 +6,14 @@ import com.example.workfinal2.repository.GroupRepository;
 import com.example.workfinal2.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
+
 @Service
 public class StudentService {
+
   private final StudentRepository studentRepository;
   private final GroupRepository groupRepository;
 
@@ -20,12 +23,14 @@ public class StudentService {
     this.groupRepository = groupRepository;
   }
 
+  @Transactional
   public Student createStudent(Student student) {
     validateStudentCreation(student);
     student.setLastPaymentDate(new Date());
     return studentRepository.save(student);
   }
 
+  @Transactional
   public Student addStudentToGroup(Long studentId, Long groupId) {
     Student student = studentRepository.findById(studentId)
             .orElseThrow(() -> new RuntimeException("Студент з id " + studentId + " не знайдений"));
@@ -40,7 +45,7 @@ public class StudentService {
   }
 
   private void validateStudentCreation(Student student) {
-    // Логіка перевірки на унікальність або інші правила для створення студента
-    // Якщо не відповідає правилам - кинути виключення
+    // Логіка валідації
+    System.out.println("Студент для створення: " + student);
   }
 }

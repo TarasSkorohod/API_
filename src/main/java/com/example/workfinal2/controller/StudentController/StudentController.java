@@ -19,14 +19,10 @@ public class StudentController {
     this.studentService = studentService;
   }
 
-  @PostMapping("/create")
+  @PostMapping("/create-student")
   public ResponseEntity<Student> createStudent(@RequestBody Student student) {
-    try {
-      Student createdStudent = studentService.createStudent(student);
-      return new ResponseEntity<>(createdStudent, HttpStatus.CREATED);
-    } catch (RuntimeException e) {
-      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    }
+    Student createdStudent = studentService.createStudent(student);
+    return ResponseEntity.ok(createdStudent);
   }
 
   @PostMapping("/add-to-group/{groupId}")
