@@ -11,12 +11,12 @@ import lombok.Setter;
 public class Teacher {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long teacherId;
+  private Long id;
 
   private String name;
 
   @Column(name = "payment_rate")
   private int paymentRate;
 
-  // Getters and setters
+  // Constructors, other fields, getters, setters
 }

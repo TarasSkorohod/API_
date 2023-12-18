@@ -21,11 +21,7 @@ public class StudentService {
   }
 
   public Student createStudent(Student student) {
-    Student existingStudent = studentRepository.findByName(student.getName());
-    if (existingStudent != null) {
-      throw new RuntimeException("Студент з іменем " + student.getName() + " вже існує");
-    }
-
+    validateStudentCreation(student);
     student.setLastPaymentDate(new Date());
     return studentRepository.save(student);
   }
@@ -41,5 +37,10 @@ public class StudentService {
     studentRepository.save(student);
 
     return student;
+  }
+
+  private void validateStudentCreation(Student student) {
+    // Логіка перевірки на унікальність або інші правила для створення студента
+    // Якщо не відповідає правилам - кинути виключення
   }
 }

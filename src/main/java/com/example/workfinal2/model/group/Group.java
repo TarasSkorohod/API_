@@ -15,9 +15,9 @@ public class Group {
 
   @Column(name = "group_name")
   private String groupName;
+
+  // Додавання setter для groupName
   public void setGroupName(String groupName) {
     this.groupName = groupName;
   }
-
-  // Getters and setters для інших полів, якщо вони є
 }

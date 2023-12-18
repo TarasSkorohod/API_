@@ -21,9 +21,14 @@ public class StudentController {
 
   @PostMapping("/create")
   public ResponseEntity<Student> createStudent(@RequestBody Student student) {
-    Student createdStudent = studentService.createStudent(student);
-    return new ResponseEntity<>(createdStudent, HttpStatus.CREATED);
+    try {
+      Student createdStudent = studentService.createStudent(student);
+      return new ResponseEntity<>(createdStudent, HttpStatus.CREATED);
+    } catch (RuntimeException e) {
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
   }
+
   @PostMapping("/add-to-group/{groupId}")
   public ResponseEntity<Student> addStudentToGroup(
           @PathVariable Long groupId,
@@ -37,6 +42,6 @@ public class StudentController {
       return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
   }
-
 }
+
 

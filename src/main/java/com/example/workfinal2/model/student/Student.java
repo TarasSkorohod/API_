@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+
+
 @Entity
 @Table(name = "students")
 @Getter
@@ -42,28 +44,26 @@ public class Student {
   @JoinColumn(name = "group_id")
   private Group group;
 
+  public Student() {
+
+  }
+
   public enum PaymentType {
     INDIVIDUAL,
     GROUP
   }
 
-  // Геттери і сеттери для імені та дати останнього платежу
-  public String getName() {
-    return name;
-  }
-  public void setGroup(Group group) {
-    this.group = group;
+  // Конструктор з параметром studentId
+  public Student(Long studentId) {
+    this.studentId = studentId;
   }
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public Date getLastPaymentDate() {
-    return lastPaymentDate;
-  }
-
+  // Додавання setter для lastPaymentDate та setGroup
   public void setLastPaymentDate(Date lastPaymentDate) {
     this.lastPaymentDate = lastPaymentDate;
+  }
+
+  public void setGroup(Group group) {
+    this.group = group;
   }
 }

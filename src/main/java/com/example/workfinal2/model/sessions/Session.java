@@ -15,7 +15,7 @@ import java.util.Date;
 public class Session {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long sessionId;
+  private Long id;
 
   @Column(name = "session_date")
   private Date sessionDate;
@@ -28,5 +28,45 @@ public class Session {
   @JoinColumn(name = "teacher_id")
   private Teacher teacher;
 
-  // Getters and setters
+  public Session(Long id, Date sessionDate, Group group, Teacher teacher) {
+    this.id = id;
+    this.sessionDate = sessionDate;
+    this.group = group;
+    this.teacher = teacher;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public Date getSessionDate() {
+    return sessionDate;
+  }
+
+  public Group getGroup() {
+    return group;
+  }
+
+  public Teacher getTeacher() {
+    return teacher;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public void setSessionDate(Date sessionDate) {
+    this.sessionDate = sessionDate;
+  }
+
+  public void setGroup(Group group) {
+    this.group = group;
+  }
+
+  public void setTeacher(Teacher teacher) {
+    this.teacher = teacher;
+  }
+
+
+  // Constructors, other fields, getters, setters
 }
