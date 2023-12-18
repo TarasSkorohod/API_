@@ -1,6 +1,7 @@
 package com.example.workfinal2.model.teacher;
 
 import com.example.workfinal2.model.group.Group;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,8 +24,8 @@ public class Teacher {
   private int paymentRate;
 
   @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
+  @JsonIgnore
   private List<Group> groups;
-
   public Teacher(Long id, String name, int paymentRate, List<Group> groups) {
     this.id = id;
     this.name = name;
@@ -75,5 +76,4 @@ public class Teacher {
             '}';
   }
 
-  // Constructors, other fields, getters, setters
 }

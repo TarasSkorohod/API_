@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 
 @Service
@@ -28,9 +29,19 @@ public class StudentService {
   @Transactional
   public Student createStudent(Student student) {
     validateStudentCreation(student);
+
+    // Set the last payment date to the current date
     student.setLastPaymentDate(new Date());
+
+    // Set the session dates
+    List<Date> sessionDates = student.getSessionDates();
+    if (sessionDates != null && !sessionDates.isEmpty()) {
+      student.setSessionDates(sessionDates);
+    }
+
     return studentRepository.save(student);
   }
+
 
   @Transactional
   public Student addStudentToGroup(Long studentId, Long groupId) {

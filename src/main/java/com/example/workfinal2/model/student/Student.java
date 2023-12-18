@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "students")
@@ -36,7 +37,6 @@ public class Student {
   @Column(name = "payment_type")
   private PaymentType paymentType;
 
-
   @JsonProperty("totalSessions")
   @Column(name = "total_sessions")
   private int totalSessions;
@@ -59,6 +59,7 @@ public class Student {
   @ManyToOne
   @JoinColumn(name = "group_id")
   private Group group;
+
   @JsonProperty("coursePrice")
   @Column(name = "course_price")
   private int coursePrice;
@@ -66,6 +67,21 @@ public class Student {
   @JsonProperty("sessionsPerCourse")
   @Column(name = "sessions_per_course")
   private int sessionsPerCourse;
+
+  @ElementCollection
+  @CollectionTable(name = "student_session_dates", joinColumns = @JoinColumn(name = "student_id"))
+  @Temporal(TemporalType.DATE)
+  @Column(name = "session_date")
+  private List<Date> sessionDates;
+
+
+  public List<Date> getSessionDates() {
+    return sessionDates;
+  }
+
+  public void setSessionDates(List<Date> sessionDates) {
+    this.sessionDates = sessionDates;
+  }
 
   public int getCoursePrice() {
     return coursePrice;
@@ -195,6 +211,7 @@ public class Student {
             ", attendedOnSession=" + attendedOnSession +
             ", isPresent=" + isPresent +
             ", group=" + group +
+            ", sessionDates=" + sessionDates +
             '}';
   }
 }

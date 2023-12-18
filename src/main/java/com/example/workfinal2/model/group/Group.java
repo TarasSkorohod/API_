@@ -10,6 +10,8 @@ import lombok.Setter;
 
 import java.util.List;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 @Entity
 @Table(name = "groups")
 @Getter
@@ -69,5 +71,13 @@ public class Group {
     this.students = students;
   }
 
-  // Constructors, other fields, getters, setters
+  @Override
+  public String toString() {
+    return "Group{" +
+            "groupId=" + groupId +
+            ", groupName='" + groupName + '\'' +
+            ", teacher=" + teacher +
+            ", students=" + students +
+            '}';
+  }
 }
