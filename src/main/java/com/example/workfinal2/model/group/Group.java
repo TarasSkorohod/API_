@@ -2,6 +2,7 @@ package com.example.workfinal2.model.group;
 
 import com.example.workfinal2.model.teacher.Teacher;
 import com.example.workfinal2.model.student.Student;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -14,18 +15,22 @@ import java.util.List;
 @Getter
 @Setter
 public class Group {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long groupId;
 
+  @JsonProperty("groupName")
   @Column(name = "group_name")
   private String groupName;
 
+  @JsonProperty("teacherId")
   @ManyToOne
   @JoinColumn(name = "teacher_id")
   private Teacher teacher;
 
   @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
+  @JsonIgnore
   private List<Student> students;
 
   public Group() {

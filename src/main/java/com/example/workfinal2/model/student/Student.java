@@ -29,16 +29,13 @@ public class Student {
 
   @JsonProperty("phoneNumber")
   @Column(name = "phone_number")
-  private String phoneNumber; // Додано нове поле "номер телефону"
+  private String phoneNumber;
 
   @JsonProperty("paymentType")
   @Enumerated(EnumType.STRING)
   @Column(name = "payment_type")
   private PaymentType paymentType;
 
-  @JsonProperty("pricePerSession")
-  @Column(name = "price_per_session")
-  private int pricePerSession;
 
   @JsonProperty("totalSessions")
   @Column(name = "total_sessions")
@@ -62,28 +59,36 @@ public class Student {
   @ManyToOne
   @JoinColumn(name = "group_id")
   private Group group;
+  @JsonProperty("coursePrice")
+  @Column(name = "course_price")
+  private int coursePrice;
 
-  public Student() {
+  @JsonProperty("sessionsPerCourse")
+  @Column(name = "sessions_per_course")
+  private int sessionsPerCourse;
+
+  public int getCoursePrice() {
+    return coursePrice;
   }
 
+  public void setCoursePrice(int coursePrice) {
+    this.coursePrice = coursePrice;
+  }
+
+  public int getSessionsPerCourse() {
+    return sessionsPerCourse;
+  }
+
+  public void setSessionsPerCourse(int sessionsPerCourse) {
+    this.sessionsPerCourse = sessionsPerCourse;
+  }
   public enum PaymentType {
     INDIVIDUAL,
     GROUP
   }
 
-  public Student(Long studentId, String name, String parentName, String phoneNumber, PaymentType paymentType, int pricePerSession, int totalSessions, int remainingSessions, Date lastPaymentDate, boolean attendedOnSession, boolean isPresent, Group group) {
-    this.studentId = studentId;
-    this.name = name;
-    this.parentName = parentName;
-    this.phoneNumber = phoneNumber;
-    this.paymentType = paymentType;
-    this.pricePerSession = pricePerSession;
-    this.totalSessions = totalSessions;
-    this.remainingSessions = remainingSessions;
-    this.lastPaymentDate = lastPaymentDate;
-    this.attendedOnSession = attendedOnSession;
-    this.isPresent = isPresent;
-    this.group = group;
+  public Student() {
+
   }
 
   public Long getStudentId() {
@@ -124,14 +129,6 @@ public class Student {
 
   public void setPaymentType(PaymentType paymentType) {
     this.paymentType = paymentType;
-  }
-
-  public int getPricePerSession() {
-    return pricePerSession;
-  }
-
-  public void setPricePerSession(int pricePerSession) {
-    this.pricePerSession = pricePerSession;
   }
 
   public int getTotalSessions() {
@@ -190,7 +187,8 @@ public class Student {
             ", parentName='" + parentName + '\'' +
             ", phoneNumber='" + phoneNumber + '\'' +
             ", paymentType=" + paymentType +
-            ", pricePerSession=" + pricePerSession +
+            ", coursePrice=" + coursePrice +
+            ", sessionsPerCourse=" + sessionsPerCourse +
             ", totalSessions=" + totalSessions +
             ", remainingSessions=" + remainingSessions +
             ", lastPaymentDate=" + lastPaymentDate +
