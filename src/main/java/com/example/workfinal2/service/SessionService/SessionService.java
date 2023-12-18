@@ -5,6 +5,10 @@ import com.example.workfinal2.repository.SessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class SessionService {
   private final SessionRepository sessionRepository;
@@ -19,5 +23,7 @@ public class SessionService {
     return sessionRepository.save(session);
   }
 
-  // Додайте інші методи для роботи з заняттями
+  public void markAttendance(Long sessionId, List<Long> studentIds) {
+    // Логіка відмітки присутності студентів на занятті
+  }
 }

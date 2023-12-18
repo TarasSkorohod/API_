@@ -19,11 +19,12 @@ public class StudentController {
     this.studentService = studentService;
   }
 
-  @PostMapping("/create")
+  @PostMapping("/create-student")
   public ResponseEntity<Student> createStudent(@RequestBody Student student) {
     Student createdStudent = studentService.createStudent(student);
-    return new ResponseEntity<>(createdStudent, HttpStatus.CREATED);
+    return ResponseEntity.ok(createdStudent);
   }
+
   @PostMapping("/add-to-group/{groupId}")
   public ResponseEntity<Student> addStudentToGroup(
           @PathVariable Long groupId,
@@ -37,6 +38,6 @@ public class StudentController {
       return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
   }
-
 }
+
 

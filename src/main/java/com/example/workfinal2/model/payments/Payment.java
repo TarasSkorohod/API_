@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.util.Date;
 
+// Payment.java
 @Entity
 @Table(name = "payments")
 @Getter
@@ -14,7 +15,7 @@ import java.util.Date;
 public class Payment {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long paymentId;
+  private Long id;
 
   @ManyToOne
   @JoinColumn(name = "student_id")
@@ -25,5 +26,5 @@ public class Payment {
   @Column(name = "payment_date")
   private Date paymentDate;
 
-  // Getters and setters
+  // Constructors, other fields, getters, setters
 }
